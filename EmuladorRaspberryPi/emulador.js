@@ -1,7 +1,7 @@
 /*
  * IoT Hub Raspberry Pi NodeJS - Microsoft Sample Code - Copyright (c) 2017 - Licensed MIT
  */
-const wpi = require('node-wiring-pi');
+const wpi = require('wiring-pi');
 
 /*
 - Send event data to Azure IoT Hub.

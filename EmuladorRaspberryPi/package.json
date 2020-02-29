@@ -1,14 +1,14 @@
 {
-  "name": "emulador",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node emulador.js"
-  },
-  "dependencies": {
-	"node-wiring-pi": "0.0.5",
-	"azure-iot-device": "1.3.2",
-	"azure-iot-device-mqtt": "1.3.2",
-	"bme280-sensor": "0.1.7"
-  }
+    "name": "emulador",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "start": "node emulador.js"
+    },
+    "dependencies": {
+        "wiring-pi": "2.2.1",
+        "azure-iot-device": "1.3.2",
+        "azure-iot-device-mqtt": "1.3.2",
+        "bme280-sensor": "0.1.7"
+    }
 }

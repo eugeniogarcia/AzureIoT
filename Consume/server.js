@@ -40,37 +40,40 @@ const wss = new WebSocket.Server({ server });
 
 // Log when WebSockets clients connect or disconnect
 wss.on('connection', (ws) => {
-  console.log('Client connected');
-  ws.on('close', () => console.log('Client disconnected'));
+    console.log('Client connected');
+    ws.on('close', () => console.log('Client disconnected'));
 });
 
 // Broadcast data to all WebSockets clients
 wss.broadcast = function broadcast(data) {
-  wss.clients.forEach(function each(client) {
-    if (client.readyState === WebSocket.OPEN) {
-      try {
-        console.log('sending data ' + data);
-        client.send(data);
-      } catch (e) {
-        console.error(e);
-      }
-    }
-  });
+    wss.clients.forEach(function each(client) {
+        if (client.readyState === WebSocket.OPEN) {
+            try {
+                console.log('sending data ' + data);
+                client.send(data);
+            } catch (e) {
+                console.error(e);
+            }
+        }
+    });
 };
 
 // Read in data from IoT Hub and then create broadcast to WebSockets client as new data is received from device
 var iotHubReader = new iotHubClient(connectionString, consumerGroup);
-iotHubReader.startReadMessage(function (obj, date) {
-  try {
-    console.log(date);
-    date = date || Date.now();
-    //Envia a todos los clientes web-socket conectados un Json. 
-    wss.broadcast(JSON.stringify(Object.assign(obj, { time: moment().format('LTS L') })));
+iotHubReader.startReadMessage(function(obj, date) {
+    try {
+        console.log("recibi datos");
+        console.log(obj);
+        date = date || Date.now();
+        console.log(date);
+        //Envia a todos los clientes web-socket conectados un Json. 
+        wss.broadcast(JSON.stringify(Object.assign(obj, { time: moment().format('LTS L') })));
 
-  } catch (err) {
-    console.log(obj);
-    console.error(err);
-  }
+    } catch (err) {
+        console.log("error!!");
+        console.log(obj);
+        console.error(err);
+    }
 });
 
 module.exports = app;

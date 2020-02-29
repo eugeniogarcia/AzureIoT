@@ -3,3 +3,7 @@ This sample script creates an Azure Iot Hub, device identity, and consumer group
 The script also then creates an Azure Web App, and configures some application settings to populate the IoT Hub connection string and consumer group. These settings allow the Web App to receive information from the IoT device.
 
 Websockets are also enabled for the Web App to automatically update with real-time information from the IoT device.
+
+
+## Nota
+Los websockets solo funcionan si el contenedor es windows. No funcionan con Linux

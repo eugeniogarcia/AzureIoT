@@ -11,7 +11,10 @@ const moment = require('moment');
 //Toma la configuracion de dos variables de entorno. Estas variables se han creado 
 /*
 az webapp config appsettings set --resource-group azuremolchapter20 --name molwebapp --settings consumergroup=yyyyyyyy
+
 az webapp config appsettings set --resource-group azuremolchapter20 --name molwebapp --settings iot=xxxxxxxxxx
+
+Se tiene que habilitar el uso de websockets en la web-app. En Azure solo se soportan los websockets en contenedores Windows - aunque no falla en los linux, tampoco funciona
 */
 var connectionString = process.env.iot;
 var consumerGroup = process.env.consumergroup;

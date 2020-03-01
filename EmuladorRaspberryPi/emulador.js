@@ -14,12 +14,6 @@ Implement Azure IoT Device Mangement features on devices
 const Client = require('azure-iot-device').Client;
 const Message = require('azure-iot-device').Message;
 const Protocol = require('azure-iot-device-mqtt').Mqtt;
-const BME280 = require('bme280-sensor');
-
-const BME280_OPTION = {
-    i2cBusNo: 1, // defaults to 1
-    i2cAddress: BME280.BME280_DEFAULT_I2C_ADDRESS() // defaults to 0x77
-};
 
 //Datos de conexión con IoT Hub
 //Permiso device connect
@@ -29,26 +23,21 @@ const LEDPin = 4;
 
 var sendingMessage = false;
 var messageId = 0;
-var client, sensor;
+var client;
 var blinkLEDTimeout = null;
 
 //Prepara un mensaje con los datos leidos en el sensor
 function getMessage(cb) {
     messageId++;
-    //Lee datos del sensor
-    sensor.readSensorData()
-        .then(function(data) {
-            //pasa al callback un json con datos
-            cb(JSON.stringify({
-                messageId: messageId,
-                deviceId: 'Raspberry Pi Web Client',
-                temperature: data.temperature_C,
-                humidity: data.humidity
-            }), data.temperature_C > 30);
-        })
-        .catch(function(err) {
-            console.error('Failed to read out sensor data: ' + err);
-        });
+    var temperatura = Math.random() * 40;
+    var humedad = Math.random() * 100;
+    //pasa al callback un json con datos
+    cb(JSON.stringify({
+        messageId: messageId,
+        deviceId: 'Raspberry Pi Web Client',
+        temperature: temperatura,
+        humidity: humedad
+    }), temperatura > 30);
 }
 
 //helper para enviar datos al IoT Hub
@@ -125,14 +114,7 @@ wpi.setup('wpi');
 wpi.pinMode(LEDPin, wpi.OUTPUT);
 
 //Inicializa el sensor, y pone la marca para enviar mensajes
-sensor = new BME280(BME280_OPTION);
-sensor.init()
-    .then(function() {
-        sendingMessage = true;
-    })
-    .catch(function(err) {
-        console.error(err.message || err);
-    });
+sendingMessage = true;
 
 // representa un dispositivo que se conecta con el IoT Hub para enviar o recibir datos
 //Indicamos los datos de conexión y el protocolo a utilizar

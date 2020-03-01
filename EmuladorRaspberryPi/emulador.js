@@ -1,7 +1,7 @@
 /*
  * IoT Hub Raspberry Pi NodeJS - Microsoft Sample Code - Copyright (c) 2017 - Licensed MIT
  */
-const wpi = require('wiring-pi');
+const wpi = require('node-wiring-pi');
 
 /*
 - Send event data to Azure IoT Hub.
@@ -23,7 +23,7 @@ const BME280_OPTION = {
 
 //Datos de conexión con IoT Hub
 //Permiso device connect
-const connectionString = 'HostName=miprueba.azure-devices.net;DeviceId=raspberrypi;SharedAccessKey=26YIKlTE31UkUCWxLjXWcpBZtUj8tn0PLIPRGI8XrYk=';
+const connectionString = "HostName=miprueba.azure-devices.net;DeviceId=raspberrypi;SharedAccessKey=26YIKlTE31UkUCWxLjXWcpBZtUj8tn0PLIPRGI8XrYk=";
 
 const LEDPin = 4;
 

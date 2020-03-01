@@ -71,7 +71,6 @@ iotHubReader.startReadMessage(function(obj, date) {
 
     } catch (err) {
         console.log("error!!");
-        console.log(obj);
         console.error(err);
     }
 });

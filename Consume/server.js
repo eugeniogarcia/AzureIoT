@@ -12,6 +12,8 @@ const moment = require('moment');
 /*
 az webapp config appsettings set --resource-group azuremolchapter20 --name molwebapp --settings consumergroup=yyyyyyyy
 az webapp config appsettings set --resource-group azuremolchapter20 --name molwebapp --settings iot=xxxxxxxxxx
+
+El valor a especificar aquí seria el connection string del IoT Hub - no en del device
 */
 var connectionString = process.env.iot;
 var consumerGroup = process.env.consumergroup;
